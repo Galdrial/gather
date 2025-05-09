@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+{% if form.errors %}
+<p>Username e Password non combaciano! Prova di nuovo</p>
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+<p>L'account non ha accesso a questa pagina. Per procedere
+    accedi con un account autorizzato.</p>
+
+{% else %}
+<p class="fw-bold">Effettua il Login per visionare la pagina!</p>
+{% endif %}
+{% endif %}
+<div class="row">
+    <div class="col-3">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-success" type="submit" value='LOGIN'>
+            <input type="hidden" name="next" value="{{ next }}">
+    </div>
+</div>
+
+{# Assumes you set up the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Password dimenticata?</a></p>
+
+{% endblock %}

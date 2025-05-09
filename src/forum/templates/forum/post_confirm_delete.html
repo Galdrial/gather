@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+{% block title %}Discussione: {{ thread }} - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="mt-2">
+    <form method="post">
+        {% csrf_token %}
+        <p>Sei sicuro di voler cancellare '{{ object }}'?</p>
+        {{ form }}
+        <input class="btn btn-danger" type="submit" value="Confermo">
+        <a class="btn btn-warning" href="{% url 'forum:thread_detail' pk=object.thread.pk %}">Annulla</a>
+    </form>
+</div>
+{% endblock %}

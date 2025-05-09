@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Sezione: {{ section }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<h1>Sezione: {{ section }}</h1>
+<p>{{ section.description }}</p>
+
+<p>
+{% if request.user.is_authenticated %}
+<a href="{% url 'forum:thread_create' pk=section.pk %}">Crea una Nuova Discussione</a>
+{% endif %}
+</p>
+<hr>
+<h3>Discussioni:</h3>
+{% for thread in section_threads %}
+
+
+<div class="card mb-2">
+   <div class="card-body">
+     <h5 class="card-title"><a href="{{ thread.get_absolute_url }}">{{ thread }}</a></h5>
+     <h6 class="card-subtitle mb-2 text-body-secondary">{{ thread.author }}, {{ thread.created }}</h6>
+     <p class="card-text">Post: {{ thread.get_n_posts }}</p>
+     
+   </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

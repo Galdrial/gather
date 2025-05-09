@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Profilo: {{ user.username }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+
+<div class="accordion accordion-flush mb-4" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        <span class="fw-bold">Profilo Utente di: {{ user.username }}</span>
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+            Data Iscrizione: {{ user.date_joined }}
+            <p class="mb-0">Post: {{ user.get_n_posts }}</p>
+            <p>Discussioni: {{ user.get_n_threads }}</p>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+{% for thread in user_threads %}
+    
+    <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title"><a href="{{ thread.get_absolute_url }}">{{ thread }}</a></h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">In data: {{ thread.created }}</h6>
+          <p class="card-text">Post: {{ thread.get_n_posts }}</p>
+          
+        </div>
+    </div>
+{% endfor %}
+{% if not user_threads %}
+        <p>Nessuna discussione creata.</p>
+{% endif %}
+   
+
+
+{% endblock %}

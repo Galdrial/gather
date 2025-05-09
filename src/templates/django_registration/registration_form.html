@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="mt-2">
+    <div class="row">
+        <p class="fw-bold">Registra un nuovo account</p>
+        <div class="col-3">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input class="btn btn-success" type="submit" value="REGISTRA UN NUOVO ACCOUNT">
+            </form>   
+        </div>
+    </div>
+    <div class="mt-2">
+    <a href="{% url 'login' %}">Hai già un account? Accedi</a>
+    </div>
+</div>
+{% endblock %}

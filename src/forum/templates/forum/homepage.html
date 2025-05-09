@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+
+<h4>Sezioni del Forum:</h4>
+{% for section in sections %}
+
+<div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{ section.logo.url }}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{{ section.get_absolute_url }}">{{ section }}</a>
+          </h5>
+          <p class="card-text">
+            {{ section.description }}
+          </p>
+          <p class="card-text">
+            <small class="text-body-secondary">Data di creazione: {{ section.created}}</small>
+          </p>
+          <p class="card-text">
+            <small class="text-body-secondary">Discussioni: {{ section.get_n_threads}}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endfor %}
+
+
+{% endblock %}

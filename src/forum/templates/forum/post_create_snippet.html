@@ -1,0 +1,7 @@
+{% load crispy_forms_tags %}
+
+<form method='POST' action="{% url 'forum:post_create' pk=thread.pk %}">   
+    {% csrf_token %}   
+    {{ post_create_form|crispy }}
+    <input class="btn btn-success" type="submit" value='AGGIUNGI RISPOSTA'>
+</form>

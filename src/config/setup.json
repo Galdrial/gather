@@ -1,0 +1,9 @@
+{
+    "SECRET_KEY": "django-insecure-=yp)qqcguq*cpu)b780=pt!s28i^g%)vvwpmg_oa#94a2ig^gd",
+    "DEBUG": 1,
+    "ENABLE_EMAILS": 0,
+    "EMAIL_HOST_USER": "camerano.simo@gmail.com",
+    "EMAIL_HOST_PASSWORD": "sguv dzjk jwlu xnuk ",
+    "ALLOWED_HOSTS": "*",
+    "STATIC_ROOT": ""
+}
